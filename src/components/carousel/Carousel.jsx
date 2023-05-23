@@ -3,7 +3,6 @@ import {
     BsFillArrowLeftCircleFill,
     BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
@@ -18,8 +17,7 @@ import "./style.scss";
 const Carousel = ({ data, loading, endpoint, title }) => {
     const carouselContainer = useRef();
     const { url } = useSelector((state) => state.home);
-    const navigate = useNavigate();
-
+  
     const navigation = (dir) => {
         const container = carouselContainer.current;
         const scrollAmount =
@@ -67,13 +65,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                 <div
                                     key={item.id}
                                     className="carouselItem"
-                                    // onClick={() =>
-                                    //     navigate(
-                                    //         `/${item.media_type || endpoint}/${
-                                    //             item.id
-                                    //         }`
-                                    //     )
-                                    // }
+                                  
                                 >
                                     <div className="posterBlock">
                                         <Img src={posterUrl} />
