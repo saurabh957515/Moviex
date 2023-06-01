@@ -16,24 +16,20 @@ const Header = () => {
     const [query, setQuery] = useState("");
     const [showSearch, setShowSearch] = useState("");
     const navigate = useNavigate();
-    // const location = useLocation();
+    const location = useLocation();
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [location]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
 
     const controlNavbar = () => {
-      // console.log("for the less",window.scrollY);
-
         if (window.scrollY > 200) {
-          // console.log("MORE",window.scrollY);
             if (window.scrollY > lastScrollY && !mobileMenu) {
-              setShow("hide");
+                setShow("hide");
             } else {
-              setShow("show");
+                setShow("show");
             }
-        } 
-        else {
+        } else {
             setShow("top");
         }
         setLastScrollY(window.scrollY);
@@ -46,14 +42,14 @@ const Header = () => {
         };
     }, [lastScrollY]);
 
-    // const searchQueryHandler = (event) => {
-    //     if (event.key === "Enter" && query.length > 0) {
-    //         navigate(`/search/${query}`);
-    //         setTimeout(() => {
-    //             setShowSearch(false);
-    //         }, 1000);
-    //     }
-    // };
+    const searchQueryHandler = (event) => {
+        if (event.key === "Enter" && query.length > 0) {
+            navigate(`/search/${query}`);
+            setTimeout(() => {
+                setShowSearch(false);
+            }, 1000);
+        }
+    };
 
     const openSearch = () => {
         setMobileMenu(false);
@@ -83,13 +79,13 @@ const Header = () => {
                 <ul className="menuItems">
                     <li
                         className="menuItem"
-                        // onClick={() => navigationHandler("movie")}
+                        onClick={() => navigationHandler("movie")}
                     >
                         Movies
                     </li>
                     <li
                         className="menuItem"
-                        // onClick={() => navigationHandler("tv")}
+                        onClick={() => navigationHandler("tv")}
                     >
                         TV Shows
                     </li>
@@ -114,8 +110,8 @@ const Header = () => {
                             <input
                                 type="text"
                                 placeholder="Search for a movie or tv show...."
-                                // onChange={(e) => setQuery(e.target.value)}
-                                // onKeyUp={searchQueryHandler}
+                                onChange={(e) => setQuery(e.target.value)}
+                                onKeyUp={searchQueryHandler}
                             />
                             <VscChromeClose
                                 onClick={() => setShowSearch(false)}

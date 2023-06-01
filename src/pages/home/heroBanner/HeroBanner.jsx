@@ -10,8 +10,8 @@ import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 
 const HeroBanner = () => {
     const [background, setBackground] = useState("");
-    // const [query, setQuery] = useState("");
-    // const navigate = useNavigate();s
+    const [query, setQuery] = useState("");
+    const navigate = useNavigate();
     const { url } = useSelector((state) => state.home);
     const { data, loading } = useFetch("/movie/upcoming");
 
@@ -22,11 +22,13 @@ const HeroBanner = () => {
         setBackground(bg);
     }, [data]);
 
-    // const searchQueryHandler = (event) => {
-    //     if (event.key === "Enter" && query.length > 0) {
-    //         navigate(`/search/${query}`);
-    //     }
-    // };
+
+    const searchQueryHandler = (event) => {
+        if (event.key === "Enter" && query.length > 0) {
+            navigate(`/search/${query}`);
+        }
+    };
+
 
     return (
         <div className="heroBanner">
@@ -48,10 +50,10 @@ const HeroBanner = () => {
                         <input
                             type="text"
                             placeholder="Search for a movie or tv show...."
-                            // onChange={(e) => setQuery(e.target.value)}
-                            // onKeyUp={searchQueryHandler}
+                            onChange={(e) => setQuery(e.target.value)}
+                            onKeyUp={searchQueryHandler}
                         />
-                        <button>Search</button>
+                        <button onClick={()=>{ navigate(`/search/${query}`)}}>Search</button>
                     </div>
                 </div>
             </ContentWrapper>
